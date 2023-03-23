@@ -1,32 +1,27 @@
--- ESERCIZIO LABIRINTO
+-- Progetto "Quorum Sensing" By Cirillo & Straziota
 
 
 -- COSTANTI
 
 Const
-  MIN_DEG: 0;   -- minimo angolo espresso in gradi
-  MAX_DEG: 360; -- massimo angolo espresso in gradi
-  W: 10;        -- larghezza della griglia, espressa in numero di celle
-  H: 5;         -- altezza della griglia, espressa in numero di celle
-  INITIAL_X: 0; -- valore iniziale della coordinata x
-  INITIAL_Y: 0; -- valore iniziale della coordinata y
-  INITIAL_A: 0; -- valore iniziale dell'angolo
-
+  E: 3;         -- Energia dei batteri
+  T: 1;         -- intervallo di tempo nel quale i batteri inviano i messaggi
+  ST: 3;        -- Synchronization time
+  C: 0.5;       -- Concentrazione necessaria per l attivazione del batterio
+  T_MAX: 10;    -- Massimo tempo di sincronizzazione
 
 -- TIPI
 
 Type
-  deg_t: MIN_DEG..MAX_DEG;
-  w_t: 0..W;
-  h_t: 0..H;
-
+  time: 0..T_MAX;
+  concentration: 0..1;
 
 -- VARIABILI
 
 Var
-  x: w_t;   -- coordinata x
-  y: h_t;   -- coordinata y
-  a: deg_t; -- angolo
+  t: time;   -- current simulation time
+  y: h_t;    -- coordinata y
+  a: deg_t;  -- angolo
 
 
 -- PROCEDURE
