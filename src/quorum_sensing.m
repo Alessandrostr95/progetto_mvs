@@ -7,59 +7,95 @@ Const
   E: 3;         -- Energia dei batteri
   T: 1;         -- intervallo di tempo nel quale i batteri inviano i messaggi
   ST: 3;        -- Synchronization time
-  C: 0.5;       -- Concentrazione necessaria per l attivazione del batterio
+  C: 500;       -- Concentrazione necessaria per l attivazione del batterio
   T_MAX: 10;    -- Massimo tempo di sincronizzazione
+  NODO_ASSORBENTE: 3;   -- Il nodo 3 è un nodo assorbente
 
 -- TIPI
 
 Type
-  time: 0..T_MAX;
-  concentration: 0..1;
+  time_t: 0..T_MAX;
+  concentration_t: 0..1000;
+  ind_t: 1..4;
+  cells_arr_t: Array[ ind_t ] Of concentration_t;
+  state_t: enum{active, pending, sensing, gone, dead};
+  life_t: 0..E;
 
 -- VARIABILI
 
 Var
-  t: time;   -- current simulation time
-  y: h_t;    -- coordinata y
-  a: deg_t;  -- angolo
-
+  t: time_t;          -- current simulation time
+  cells_a_b: cells_arr_t; -- Array di concentrazione nelle rispettive celle per il messaggio da A a B
+  cells_b_a: cells_arr_t; -- Array di concentrazione nelle rispettive celle per il messaggio da B a A
+  state_a: state_t;   -- Stato in cui si trova A
+  state_b: state_t;   -- Stato in cui si trova B
+  life_a: life_t;     -- Vita del batterio A
+  life_b: life_t;     -- Vita del batterio B
+  ind: ind_t;
 
 -- PROCEDURE
 
-Procedure Avanza();
+Procedure InviaMessaggio( Var c : ind_t );
 Begin
-	Switch a 
-		Case 0:   -- angolo 0° -> avanza verso destra
-      x := x + 1;
-    Case 90:  -- angolo 90° -> avanza verso l'alto
-      y := y + 1;
-    Case 180: -- angolo 180° -> avanza verso sinistra
-      x := x - 1;
-    Case 270: -- angolo 270° -> avanza verso il basso
-      y := y - 1; 
+  Switch c 
+		Case 1:   -- Cella in alto a sinistra
+      If state_a = pending & life_a > 0 then
+        life_a := life_a - 1;
+        cells_a_b[2] := cells_a_b[1]/2;
+        cells_a_b[3] := cells_a_b[1]/2;
+      Else
+        state_a := dead;
+      Endif;
+    Case 2:  -- Cella in alto a destra
+      cells_a_b[4] := cells_a_b[2];
 	Endswitch;
 End;
 
-Procedure Ruota();
+Procedure InvioMessaggioDiRitorno( Var c : ind_t );
 Begin
-  a := (a + 90) % MAX_DEG;  -- ruota di 90° in senso antiorario.
+  Switch c 
+		Case 1:   -- Cella in alto a sinistra
+      If state_b = pending & life_b > 0 then
+        life_b := life_b - 1;
+        cells_b_a[2] := cells_b_a[4]/2;
+        cells_b_a[3] := cells_b_a[4]/2;
+      Else
+        state_b := dead;
+      Endif;
+    Case 2:  -- Cella in alto a destra
+      cells_b_a[1] := cells_b_a[2];
+	Endswitch;
 End;
-
 
 -- REGOLE
 
-Rule "Avanza"
-  (a = 0 & x < W) | (a = 90 & y < H) | (a = 180 & x > 0) | (a = 270 & y > 0)
-==>
-Begin
-  Avanza();
+Ruleset c : ind_t Do
+  Rule "InviaMessaggio"
+  --  state_a = pending & life_a > 0
+    cells_a_b[c] > 0 & c != NODO_ASSORBENTE
+  ==>
+  Begin
+    ind := c;
+    InviaMessaggio(ind);
+  End;
 End;
 
-Rule "Ruota"
-  true
+Rule "StartSensing"
+  cells_b_a[4] > C & state_b = active
 ==>
 Begin
-  Ruota();
+  state_b := pending;
+End;
+
+Ruleset c : ind_t Do
+  Rule "InvioMessaggioDiRitorno"
+  --  state_a = pending & life_a > 0
+    cells_b_a[c] > 0 & c != NODO_ASSORBENTE & state_b = pending
+  ==>
+  Begin
+    ind := c;
+    InvioMessaggioDiRitorno(ind);
+  End;
 End;
 
 
@@ -67,19 +103,21 @@ End;
 
 Startstate  -- stato iniziale
   Begin
-	  x := INITIAL_X;
-    y := INITIAL_Y;
-    a := INITIAL_A;
+    t := 0;
+    life_a := E;
+    life_b := E;
+	  state_a := pending;
+    state_b := active;
+    For i: ind_t do
+      cells_a_b[i] := 0;
+      cells_b_a[i] := 0;
+    End;
+    cells_a_b[1] := 1000;
+    cells_b_a[4] := 1000;
   End;
 
 
 -- INVARIANTI 
 
-Invariant "x coord in range"  -- invariante: la coordinata x deve rimanere entro i bordi
-	x >= 0 & x <= W;
-
-Invariant "y coord in range"  -- invariante: la coordinata y deve rimanere entro i bordi
-  y >= 0 & y <= H;
-
-Invariant "a in range"  -- l'angolo deve sempre essere ortogonale
-  a >= 0 & a <= MAX_DEG;
+Invariant "lifes greater than 0"  -- invariante: le vite dei batteri devono essere sempre maggiori di 0
+	life_a > 0 & life_b > 0;
