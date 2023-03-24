@@ -1,2 +1,5 @@
 **/cmurphi5.5.0/
 **/build/
+**/*.cpp
+**/*.out
+**/.DS_Store
