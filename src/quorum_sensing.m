@@ -7,7 +7,7 @@ Const
   E: 3;         -- Energia dei batteri
   T: 1;         -- intervallo di tempo nel quale i batteri inviano i messaggi
   ST: 3;        -- Synchronization time
-  C: 500;       -- Concentrazione necessaria per l attivazione del batterio
+  C: 1000;       -- Concentrazione necessaria per l attivazione del batterio
   T_MAX: 10;    -- Massimo tempo di sincronizzazione
   NODO_ASSORBENTE: 3;   -- Il nodo 3 è un nodo assorbente
 
@@ -98,6 +98,14 @@ Ruleset c : ind_t Do
   End;
 End;
 
+Rule "SensingArchieved"
+  cells_a_b[4] >= C & cells_b_a[1] >= C & state_a = pending & state_b = pending
+==>
+  Begin
+    state_a := sensing;
+    state_b := sensing;
+End;
+
 
 -- STATO INIZIALE
 
@@ -121,3 +129,6 @@ Startstate  -- stato iniziale
 
 Invariant "lifes greater than 0"  -- invariante: le vite dei batteri devono essere sempre maggiori di 0
 	life_a > 0 & life_b > 0;
+
+Invariant "sensing achieved" -- il sensing non è stato raggiunto
+  state_a != sensing & state_b != sensing;
