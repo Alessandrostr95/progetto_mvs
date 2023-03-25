@@ -5,7 +5,7 @@
 
 Const
   E: 3;         -- Energia dei batteri
-  T: 1;         -- intervallo di tempo nel quale i batteri inviano i messaggi
+  T: 3;         -- intervallo di tempo nel quale i batteri inviano i messaggi
   ST: 3;        -- Synchronization time
   C: 1000;       -- Concentrazione necessaria per l attivazione del batterio
   T_MAX: 10;    -- Massimo tempo di sincronizzazione
@@ -18,8 +18,9 @@ Type
   concentration_t: 0..1000;
   ind_t: 1..4;
   cells_arr_t: Array[ ind_t ] Of concentration_t;
-  state_t: enum{active, pending, sensing, gone, dead};
+  state_t: enum{active, pending, sensing, gone, dead, synchronization};
   life_t: 0..E;
+  synchronization_time_t: 0..ST;
 
 -- VARIABILI
 
@@ -32,9 +33,11 @@ Var
   life_a: life_t;     -- Vita del batterio A
   life_b: life_t;     -- Vita del batterio B
   ind: ind_t;
+  synchronization_time: synchronization_time_t;
 
 -- PROCEDURE
 
+-- Invia il messaggio "in andata". c: indice della cella 
 Procedure InviaMessaggio( Var c : ind_t );
 Begin
   Switch c 
@@ -43,7 +46,7 @@ Begin
         life_a := life_a - 1;
         cells_a_b[2] := cells_a_b[1]/2;
         cells_a_b[3] := cells_a_b[1]/2;
-      Else
+      Elsif life_a =0 then
         state_a := dead;
       Endif;
     Case 2:  -- Cella in alto a destra
@@ -51,6 +54,7 @@ Begin
 	Endswitch;
 End;
 
+-- Invia il messaggio "di ritorno". c: indice della cella 
 Procedure InvioMessaggioDiRitorno( Var c : ind_t );
 Begin
   Switch c 
@@ -59,7 +63,7 @@ Begin
         life_b := life_b - 1;
         cells_b_a[2] := cells_b_a[4]/2;
         cells_b_a[3] := cells_b_a[4]/2;
-      Else
+      Elsif life_b = 0 then
         state_b := dead;
       Endif;
     Case 2:  -- Cella in alto a destra
@@ -69,6 +73,7 @@ End;
 
 -- REGOLE
 
+-- Per ogni cella, regola dell'invio dell'informazione
 Ruleset c : ind_t Do
   Rule "InviaMessaggio"
   --  state_a = pending & life_a > 0
@@ -76,17 +81,23 @@ Ruleset c : ind_t Do
   ==>
   Begin
     ind := c;
-    InviaMessaggio(ind);
+    If t % T = 0 then
+      InviaMessaggio(ind);
+    Endif;
+    t := t+1 -- aumento del tempo di simulazione
   End;
 End;
 
+-- B inivia il sensing
 Rule "StartSensing"
   cells_b_a[4] > C & state_b = active
 ==>
 Begin
   state_b := pending;
+  t := t + 1
 End;
 
+-- Per ogni cella, regola del messaggio di ritorno
 Ruleset c : ind_t Do
   Rule "InvioMessaggioDiRitorno"
   --  state_a = pending & life_a > 0
@@ -94,16 +105,51 @@ Ruleset c : ind_t Do
   ==>
   Begin
     ind := c;
-    InvioMessaggioDiRitorno(ind);
+    If t % T = 0 then
+      InvioMessaggioDiRitorno(ind);
+    Endif;
+    t := t + 1 -- aumento del tempo di simulazione
   End;
 End;
 
-Rule "SensingArchieved"
+-- Inizio della sincronizzazione quando la concentrazione ha superato la soglia ed entrambi sono nello stato pending
+Rule "StartSynchronization"
   cells_a_b[4] >= C & cells_b_a[1] >= C & state_a = pending & state_b = pending
 ==>
   Begin
+    state_a := synchronization;
+    state_b := synchronization;
+    t := t + 1;
+End;
+
+-- Per ogni tempo di simulazione a partire dall'inizio della sincronizzazione, aumentiamo il tempo
+Ruleset st : synchronization_time_t Do
+  Rule "Synchronization"
+    state_a = synchronization & state_b = synchronization
+  ==>
+  Begin
+    synchronization_time := st + 1;
+    t := t + 1;
+  End;
+End;
+
+-- Entrambi sono riusciti a raggiungere il sensing
+Rule "SensingAchieved"
+  synchronization_time = ST & state_a = synchronization & state_b = synchronization
+==>
+Begin
     state_a := sensing;
-    state_b := sensing;
+    state_b := sensing; 
+    t := t + 1;
+End;
+
+-- A se ne va
+Rule "Gone"
+  state_a = pending
+==>
+  Begin
+    state_a := gone;
+    t := t + 1
 End;
 
 
@@ -122,13 +168,17 @@ Startstate  -- stato iniziale
     End;
     cells_a_b[1] := 1000;
     cells_b_a[4] := 1000;
+    synchronization_time := 0;
   End;
 
 
 -- INVARIANTI 
 
-Invariant "lifes greater than 0"  -- invariante: le vite dei batteri devono essere sempre maggiori di 0
-	life_a > 0 & life_b > 0;
+Invariant "All alive"  -- invariante: le vite dei batteri devono essere sempre maggiori di 0
+	state_a != dead & state_b != dead;
 
 Invariant "sensing achieved" -- il sensing non è stato raggiunto
   state_a != sensing & state_b != sensing;
+
+Invariant "time not expired" -- il tempo della simulazione è ≤ di T_MAX
+  t <= T_MAX;
