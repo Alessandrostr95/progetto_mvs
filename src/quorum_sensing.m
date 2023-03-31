@@ -7,8 +7,8 @@ Const
   E: 3;         -- Energia dei batteri
   T: 3;         -- intervallo di tempo nel quale i batteri inviano i messaggi
   ST: 3;        -- Synchronization time
-  C: 1000;       -- Concentrazione necessaria per l attivazione del batterio
-  T_MAX: 10;    -- Massimo tempo di sincronizzazione
+  C: 500;       -- Concentrazione necessaria per l attivazione del batterio
+  T_MAX: 10;    -- Massimo tempo di simulazione
   NODO_ASSORBENTE: 3;   -- Il nodo 3 è un nodo assorbente
 
 -- TIPI
@@ -50,7 +50,8 @@ Begin
         state_a := dead;
       Endif;
     Case 2:  -- Cella in alto a destra
-      cells_a_b[4] := cells_a_b[2];
+      cells_a_b[4] := cells_a_b[2]; -- TODO: Il nodo 2 "svuota" la sua concentrazione per darla al 4.
+      cells_a_b[2] := 0;
 	Endswitch;
 End;
 
@@ -81,10 +82,10 @@ Ruleset c : ind_t Do
   ==>
   Begin
     ind := c;
-    If t % T = 0 then
+    If t % T = 0 then -- TODO: T solo per il nodo 1
       InviaMessaggio(ind);
     Endif;
-    t := t+1 -- aumento del tempo di simulazione
+    t := t + 1 -- aumento del tempo di simulazione
   End;
 End;
 
@@ -111,6 +112,8 @@ Ruleset c : ind_t Do
     t := t + 1 -- aumento del tempo di simulazione
   End;
 End;
+
+-- TODO: start synchronization sfasato per i due batteri
 
 -- Inizio della sincronizzazione quando la concentrazione ha superato la soglia ed entrambi sono nello stato pending
 Rule "StartSynchronization"
@@ -143,9 +146,11 @@ Begin
     t := t + 1;
 End;
 
+-- TODO: parametrizzare il fatto che A se ne vada dopo un certo tempo dopo aver inviato un messaggio e aggiungere invariante che nessuno se ne sia andato
+
 -- A se ne va
 Rule "Gone"
-  state_a = pending
+  state_a = pending & t = 5
 ==>
   Begin
     state_a := gone;
