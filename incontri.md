@@ -9,4 +9,3 @@
 # 31/03
 - I batteri tra un messaggio e l'altro devono far passare un tempo $T$.
     - Politica opportunistica: mando un messaggio e spero che mi dica bene.
-- 

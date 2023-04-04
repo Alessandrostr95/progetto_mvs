@@ -1,5 +1,6 @@
 # Progetto MVS Cirillo & Straziota
-## Analisi dei requisiti
+## Introduzione
+## Definizione del modello
 - Abbiamo delle entità che si vogliono sincronizzare, per semplicità, 2:
 - Vogliono prendere una decisione comune:
     - Entrambi passano allo stato 1 (sensing).
@@ -46,12 +47,27 @@ di prenderlo in considerazione.
     - Semplificazione con $\frac{1}{2}$, ingannevolo o no. Agente ottimista e agente pessimista.
 - Gli agenti NON se ne vanno dal quadrato.
 
-## Criteri di successo/insuccesso
+<!--> Requisiti dell'incontro 9 febbraio <!-->
+
+- Se l'agente invia 3 messaggi e non c'è nessuno, murphi deve dare errore.
+- L'agente ha una visione locale.
+- Un agente prudente manda un certo messaggio, se dopo un certo tempo non riceve risposta, ne manda un secondo al massimo ma può entrare in uno stato "lasciamo perdere".
+    - Murphi considera il messaggio "non erroneo" se B non c'è.
+- Agente prudente: manda un messaggio, aspetta un certo tempo e se non succede niente si mette nello stato "lasciamo perdere". Se l'altro nel frattempo risponde, non succede niente, perché in questa condizione tutte le regole sono disabilitate.
+    - B non conosce il tempo in cui A attende
+
+<!-- Requisiti dell'incontro 31 marzo -->
+- I batteri tra un messaggio e l'altro devono far passare un tempo $T$.
+    - Politica opportunistica: mando un messaggio e spero che mi dica bene.
+
+### Criteri di successo/insuccesso
 Lo stato erroneo è il successo.
 - Nel caso non c'è nessuno, il piano giusto è stare buono.
     - Stato anomalo.
 
-## Setup della simulazione
+## Implementazione
+
+### Setup della simulazione
 - _M,N_: parametri della griglia
     - 2,2
 - _K_: # di quadrati assorbenti
@@ -59,3 +75,5 @@ Lo stato erroneo è il successo.
     - Numero di messaggi che possono inviare, 3.
 - _T_: Intervallo di tempo nel quale _A_ e _B_ emettono i messaggi.
 - Tempo di sincronizzazione: 3 secondi.
+
+### Possibili cammini di esecuzione

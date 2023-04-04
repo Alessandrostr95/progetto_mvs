@@ -5,11 +5,12 @@
 
 Const
   E: 3;         -- Energia dei batteri
-  T: 3;         -- intervallo di tempo nel quale i batteri inviano i messaggi
-  ST: 3;        -- Synchronization time
+  DT: 3;         -- intervallo di tempo nel quale i batteri inviano i messaggi
+  ST: 9;        -- Synchronization time
   C: 500;       -- Concentrazione necessaria per l attivazione del batterio
   T_MAX: 10;    -- Massimo tempo di simulazione
   NODO_ASSORBENTE: 3;   -- Il nodo 3 è un nodo assorbente
+  L: 5;         -- Tempo parametrizzato in cui A è disposto ad aspettare
 
 -- TIPI
 
@@ -18,7 +19,7 @@ Type
   concentration_t: 0..1000;
   ind_t: 1..4;
   cells_arr_t: Array[ ind_t ] Of concentration_t;
-  state_t: enum{active, pending, sensing, gone, dead, synchronization};
+  state_t: enum{active, pending, sensing, gone, dead};
   life_t: 0..E;
   synchronization_time_t: 0..ST;
 
@@ -33,7 +34,8 @@ Var
   life_a: life_t;     -- Vita del batterio A
   life_b: life_t;     -- Vita del batterio B
   ind: ind_t;
-  synchronization_time: synchronization_time_t;
+  synchronization_time_a: synchronization_time_t; -- Countdown per la sincronizzazione di A
+  synchronization_time_b: synchronization_time_t; -- Countdown per la sincronizzazione di B
 
 -- PROCEDURE
 
@@ -42,7 +44,7 @@ Procedure InviaMessaggio( Var c : ind_t );
 Begin
   Switch c 
 		Case 1:   -- Cella in alto a sinistra
-      If state_a = pending & life_a > 0 then
+      If state_a = pending & life_a > 0 & synchronization_time_a % DT = 0 then
         life_a := life_a - 1;
         cells_a_b[2] := cells_a_b[1]/2;
         cells_a_b[3] := cells_a_b[1]/2;
@@ -50,7 +52,7 @@ Begin
         state_a := dead;
       Endif;
     Case 2:  -- Cella in alto a destra
-      cells_a_b[4] := cells_a_b[2]; -- TODO: Il nodo 2 "svuota" la sua concentrazione per darla al 4.
+      cells_a_b[4] := cells_a_b[2];
       cells_a_b[2] := 0;
 	Endswitch;
 End;
@@ -59,8 +61,8 @@ End;
 Procedure InvioMessaggioDiRitorno( Var c : ind_t );
 Begin
   Switch c 
-		Case 1:   -- Cella in alto a sinistra
-      If state_b = pending & life_b > 0 then
+		Case 4:   -- Cella in basso a destra
+      If state_b = pending & life_b > 0 & synchronization_time_b % DT = 0 then
         life_b := life_b - 1;
         cells_b_a[2] := cells_b_a[4]/2;
         cells_b_a[3] := cells_b_a[4]/2;
@@ -69,7 +71,20 @@ Begin
       Endif;
     Case 2:  -- Cella in alto a destra
       cells_b_a[1] := cells_b_a[2];
+      cells_b_a[2] := 0;
 	Endswitch;
+End;
+
+-- Nel momento in cui almeno uno dei due è in pending, inizia il rispettivo countdown per il tempo di sincronizzazione
+
+Procedure TickSynchronizationTime();
+Begin
+  If state_a = pending then
+    synchronization_time_a := synchronization_time_a + 1;
+  Endif;
+  If state_b = pending then
+    synchronization_time_b := synchronization_time_b + 1;
+  Endif;
 End;
 
 -- REGOLE
@@ -82,20 +97,20 @@ Ruleset c : ind_t Do
   ==>
   Begin
     ind := c;
-    If t % T = 0 then -- TODO: T solo per il nodo 1
-      InviaMessaggio(ind);
-    Endif;
-    t := t + 1 -- aumento del tempo di simulazione
+    InviaMessaggio(ind);
+    t := t + 1; -- aumento del tempo di simulazione
+    TickSynchronizationTime();
   End;
 End;
 
 -- B inivia il sensing
 Rule "StartSensing"
-  cells_b_a[4] > C & state_b = active
+  cells_a_b[4] >= C & state_b = active
 ==>
 Begin
   state_b := pending;
-  t := t + 1
+  t := t + 1;
+  TickSynchronizationTime();
 End;
 
 -- Per ogni cella, regola del messaggio di ritorno
@@ -106,55 +121,31 @@ Ruleset c : ind_t Do
   ==>
   Begin
     ind := c;
-    If t % T = 0 then
-      InvioMessaggioDiRitorno(ind);
-    Endif;
-    t := t + 1 -- aumento del tempo di simulazione
-  End;
-End;
-
--- TODO: start synchronization sfasato per i due batteri
-
--- Inizio della sincronizzazione quando la concentrazione ha superato la soglia ed entrambi sono nello stato pending
-Rule "StartSynchronization"
-  cells_a_b[4] >= C & cells_b_a[1] >= C & state_a = pending & state_b = pending
-==>
-  Begin
-    state_a := synchronization;
-    state_b := synchronization;
-    t := t + 1;
-End;
-
--- Per ogni tempo di simulazione a partire dall'inizio della sincronizzazione, aumentiamo il tempo
-Ruleset st : synchronization_time_t Do
-  Rule "Synchronization"
-    state_a = synchronization & state_b = synchronization
-  ==>
-  Begin
-    synchronization_time := st + 1;
-    t := t + 1;
+    InvioMessaggioDiRitorno(ind);
+    t := t + 1; -- aumento del tempo di simulazione
+    TickSynchronizationTime();
   End;
 End;
 
 -- Entrambi sono riusciti a raggiungere il sensing
 Rule "SensingAchieved"
-  synchronization_time = ST & state_a = synchronization & state_b = synchronization
+  state_a = pending & state_b = pending & cells_b_a[1] >= C & cells_a_b[4] >= C
 ==>
 Begin
     state_a := sensing;
     state_b := sensing; 
     t := t + 1;
+    TickSynchronizationTime();
 End;
 
--- TODO: parametrizzare il fatto che A se ne vada dopo un certo tempo dopo aver inviato un messaggio e aggiungere invariante che nessuno se ne sia andato
-
--- A se ne va
+-- A se ne va se è in pending ed ha aspettato un certo tempo L
 Rule "Gone"
-  state_a = pending & t = 5
+  state_a = pending & synchronization_time_a = L
 ==>
   Begin
     state_a := gone;
-    t := t + 1
+    t := t + 1;
+    TickSynchronizationTime();
 End;
 
 
@@ -173,7 +164,8 @@ Startstate  -- stato iniziale
     End;
     cells_a_b[1] := 1000;
     cells_b_a[4] := 1000;
-    synchronization_time := 0;
+    synchronization_time_a := 0;
+    synchronization_time_b := 0;
   End;
 
 
@@ -187,3 +179,6 @@ Invariant "sensing achieved" -- il sensing non è stato raggiunto
 
 Invariant "time not expired" -- il tempo della simulazione è ≤ di T_MAX
   t <= T_MAX;
+
+Invariant "Nobody gone" -- Nessuno se n'è andato
+  state_a != gone & state_b != gone;
