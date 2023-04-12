@@ -1,5 +1,15 @@
 # Progetto MVS Cirillo & Straziota
 ## Introduzione
+![biofilm](img/2-biofilm.jpeg)
+Alcuni batteri possiedono sistemi di regolazione trascrizionale dipendenti dalla percezione della densità di cellule della stessa specie presenti nella popolazione; questo tipo di controllo è stato definito **quorum sensing** (QS). Il QS fa parte dei sistemi di controllo globale: complessi sistemi di regolazione coinvolti nei meccanismi di patogenicità e virulenza che permettono a un organismo di rispondere efficientemente ai segnali dell’ambiente, come quello rappresentato, nel caso specifico, dalla presenza di altri microrganismi della stessa specie. I batteri rilevano la presenza di altri batteri nel loro intorno producendo e rispondendo con molecole segnale conosciute come **autoinduttori**.
+
+La molecola segnale è un induttore che diffonde all'esterno della cellula originaria, e può così entrare nel citoplasma di altre cellule adiacenti. Se la concentrazione di molecola segnale all'interno di cellule della popolazione batterica è alta (cioè, supera una certa soglia detta **quorum**), questa molecola si legherà all'attivatore trascrizionale, che a sua volta attiverà o reprimerà una serie di geni, determinando l'attivazione o lo spegnimento di vie metaboliche o processi cellulari specifici.
+
+<!-- Queste molecole si accumulano al di fuori delle cellule microbiche e, superata una certa soglia (detta quorum), possono innescare una serie di eventi che si succedono con effetto “a cascata”. -->
+
+Raggiunto il quorum, le molecole di **acil-omoserina-lattone (AHL)** accumulate penetrano all’interno della cellula batterica dove possono interagire con proteine citoplasmatiche capaci di legare il DNA, inducendo una variazione dell’espressione genica.
+![Figura 1 – Overview del funzionamento del quorum sensing batterico](img/1-quorum-sensing.jpeg)
+Si pensa che la conoscenza dei meccanismi del quorum sensing possa aiutare i microbiologi a migliorare l'azione degli antibiotici contro batteri patogeni e a ridurre l'insorgenza di mutanti.
 ## Definizione del modello
 - Abbiamo delle entità che si vogliono sincronizzare, per semplicità, 2:
 - Vogliono prendere una decisione comune:
