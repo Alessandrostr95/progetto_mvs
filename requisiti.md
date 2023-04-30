@@ -148,27 +148,206 @@ Le condizioni e assunzioni che abbiamo fatto per il modello sono le seguenti:
 
 ### Criteri di successo/insuccesso
 La simulazione può terminare se almeno una delle seguenti condizioni si verifica:
-- Uno dei batteri esaurisce la sua vita a disposizione
-- Il tempo di simulazione raggiunge un certo tempo $T_{MAX}$ prestabilito.
-- Uno dei due batteri ha lasciato la simulazione.
-- Il sensing viene raggiunto
 
-Di cui solamente l'ultima condizione è considerata <u>successo</u>.
-<!-- - Lo stato erroneo è il successo.
-- Nel caso non c'è nessuno, il piano giusto è stare buono.
-    - Stato anomalo. -->
+- almeno uno dei batteri esaurisce l'energia a disposizione, passando nello stato `dead`.
+- il clock `t` raggiunge un certo tempo massimo `T_MAX`-
+- il batterio `A` lascia la simulazione, passando nello stato `gone`.
+- Il sensing viene iniziato da entrambi i batteri, passando nello stato `sensing`.
+
+La simulazione termina con successo se:
+
+- entrambi i batteri si trovano nello stato `sensing` al termine della simulazione.
+- il batterio `A` si trova nello stato `gone` e il batterio `B` si trova nello stato `active` al termine della simulazione.
+
+La simulazione termina con insuccesso se:
+
+- il batterio `A` si trova nello stato `gone` e il batterio `B` si trova nello stato `dead` al termine della simulazione.
+- almeno uno dei batteri si trova nello stato `dead` al termine della simulazione.
+- un batterio si trova nello stato `sensing` e l'altro si trova in un qualsiasi altro stato al termine della simulazione.
 
 ## Implementazione
+Per prima cosa abbiamo definito i **parametri** della simulazione:
 
-### Setup della simulazione
-- `E`: energia dei batteri
-    - O numero di messaggi che possono inviare. Nel nostro caso `3`.
-- `DT`: Intervallo di tempo nel quale _A_ e _B_ emettono i messaggi.
-- `ST`: Synchronization time: tempo in cui, una volta che _A_ o _B_ si trova nello stato `pending` si deve raggiungere il sensing.
-- `C`: concentrazione necessaria all'"attivazione" del batterio che riceve un messaggio.
-- `M,N`: parametri della griglia
-    - Nel nostro caso la griglia sarà una 2x2.
-- `NODO_ASSORBENTE`: posizione del nodo assorbente nella griglia
-    - Nella simulazione il nodo assorbente sarà il 3, ovvero quello il posizione 2x1.
+```mathematica
+Const
+  E: 3;     -- Energia dei batteri
+  DT: 3;    -- intervallo di tempo nel quale i batteri inviano i messaggi
+  ST: 9;    -- Synchronization time
+  C: 500;   -- Concentrazione necessaria per l attivazione del batterio
+  T_MAX: 10;    -- Massimo tempo di simulazione
+  NODO_ASSORBENTE: 3;   -- Il nodo 3 è un nodo assorbente
+  L: 5;     -- Tempo parametrizzato in cui A è disposto ad aspettare
+```
+
+La concentrazione necessaria `C` ha come valore 500 perché rappresentiamo la percentuale di concentrazione con un numero intero compreso tra 0 e 1000.
+Perciò `C` rappresenta il 50% di concentrazione.
+
+Successivamente abbiamo definito i **tipi** che ci servono per rappresentare lo stato dei nodi e dei messaggi:
+
+```mathematica
+Type
+  time_t: 0..T_MAX;
+  concentration_t: 0..1000;
+  ind_t: 1..4;
+  cells_arr_t: Array[ ind_t ] Of concentration_t;
+  state_t: enum{active, pending, sensing, gone, dead};
+  life_t: 0..E;
+  synchronization_time_t: 0..ST;
+```
+
+- `time_t`: è il tipo del clock `t`. Un numero intero compreso tra 0 e `T_MAX`.
+- `concentration_t`: è il tipo della concentrazione. Un numero intero compreso tra 0 e 1000.
+- `ind_t`: è il tipo degli indici dei nodi. Nel nostro caso gli indici sono 1,2,3,4.
+- `cells_arr_t`: è il tipo dell'array che rappresenta la griglia. Abbiamo quindi un tipo `array` di `concentration_t` i cui indici sono `ind_t`.
+- `state_t`: è il tipo degli stati dei nodi. Gli stati possibili sono `active`, `pending`, `sensing`, `gone` e `dead`.
+- `life_t`: è il tipo dell'energia dei batteri. Un numero intero compreso tra 0 e `E`.
+- `synchronization_time_t`: è il tipo del tempo di sincronizzazione. Un numero intero compreso tra 0 e `ST`.
+
+Dopo aver definito i tipi, abbiamo definito le **variabili** che ci servono per rappresentare lo stato dei nodi e dei messaggi:
+
+```mathematica
+  t: time_t;    -- current simulation time
+  cells_a_b: cells_arr_t; -- Array di concentrazione nelle rispettive celle per il messaggio da A a B
+  cells_b_a: cells_arr_t; -- Array di concentrazione nelle rispettive celle per il messaggio da B a A
+  state_a: state_t;   -- Stato in cui si trova A
+  state_b: state_t;   -- Stato in cui si trova B
+  life_a: life_t;     -- Vita del batterio A
+  life_b: life_t;     -- Vita del batterio B
+  ind: ind_t;
+  synchronization_time_a: synchronization_time_t; -- Countdown per la sincronizzazione di A
+  synchronization_time_b: synchronization_time_t; -- Countdown per la sincronizzazione di B
+```
+
+- `t`: è il clock della simulazione.
+- `cells_a_b`: è un **array** di concentrazione nelle rispettive celle per il messaggio da `A` a `B`.
+- `cells_b_a`: è un **array** di concentrazione nelle rispettive celle per il messaggio da `B` a `A`.
+- `state_a`: è lo stato del batterio `A`.
+- `state_b`: è lo stato del batterio `B`.
+- `life_a`: è l'energia residua del batterio `A`.
+- `life_b`: è l'energia residua del batterio `B`.
+- `ind`: è l'indice del nodo corrente.
+- `synchronization_time_a`: è il tempo di sincronizzazione del batterio `A`.
+- `synchronization_time_b`: è il tempo di sincronizzazione del batterio `B`.
+
+Abbiamo deciso di rappresentare la griglia con un array di concentrazione, dove nelle rispettive celle abbiamo la concentrazione di messaggio da `A` a `B`.
+Analogamente per il messaggio da `B` a `A`.
+
+![Array di concentrazione.](./img/img5.png)
+
+Lo stato iniziale della simulazione è il seguente:
+
+```mathematica
+-- STATO INIZIALE
+
+Startstate  -- stato iniziale
+  Begin
+    t := 0;
+    life_a := E;
+    life_b := E;
+	  state_a := pending;
+    state_b := active;
+    For i: ind_t do
+      cells_a_b[i] := 0;
+      cells_b_a[i] := 0;
+    End;
+    cells_a_b[1] := 1000;
+    cells_b_a[4] := 1000;
+    synchronization_time_a := 0;
+    synchronization_time_b := 0;
+  End;
+```
+
+- `t` è inizializzato a 0 (*tempo iniziale*).
+- `life_a` e `life_b` sono inizializzati a `E` (*energia iniziale*).
+- `state_a` è inizializzato a `pending` (*stato iniziale di `A`*). Il tempo iniziale $t = 0$ parte quando `A` inizia a inviare i messaggi.
+- `state_b` è inizializzato a `active` (*stato iniziale di `B`*).
+- `cells_a_b` = [100\%, 0\%, 0\%, 0\%] (*messaggio da `A` a `B`*).
+- `cells_b_a` = [0\%, 0\%, 0\%, 100\%] (*messaggio da `B` a `A`*).
+- `synchronization_time_a` e `synchronization_time_b` sono inizializzati a 0 (*tempo di sincronizzazione iniziale*).
+
+### Regole
+Di seguito descritte le regole del modello.
+
+#### InviaMessaggio
+Questa regola definisce come e quando un nodo deve inviare un messaggio dell'agente `A`.
+
+```mathematica
+Ruleset c : ind_t Do
+  Rule "InviaMessaggio"
+    cells_a_b[c] > 0 & c != NODO_ASSORBENTE
+  ==>
+  Begin
+    ind := c;
+    InviaMessaggio(ind);
+    t := t + 1; -- aumento del tempo di simulazione
+    TickSynchronizationTime();
+  End;
+End;
+```
+
+Il nodo indicizzato con `c` invia il messaggio solo se sono rispettate le seguenti condizioni:
+
+1. La concentrazione del messaggio è *non nulla* (maggiore di 0).
+2. L'indice del nodo corrente è diverso dall'indice del nodo assorbente. Esso non deve inviare messaggi.
+
+Se le condizioni sono rispettate, allora:
+
+1. il nodo invia il messaggio
+2. il tempo di simulazione viene incrementato di 1.
+3. viene aggiornato il tempo di sincronizzazione.
+
+> **IMPORTANTE!** In un modello ragionevole, ci si aspetta che il nodo `X` possa riceve ed inviare un messaggio in uno stesso istante.
+> Per come è stata definita la regola `InviaMessaggio`, questo non è possibile.
+> Infatti **solo un nodo** per clock può inviare un messaggio.
+> Per ovviare a questo problema (che avrebbe comportato notevoli complicazioni), abbiamo impostato il parametro `DT` (`Delta Time`) in maniera **sufficientemente grande**.
+> Infatti, se `DT` è sufficientemente grande, allora non può mai capitare che `X` riceva e invii un messaggio nello stesso istante.
+
+#### InviaMessaggioRitorno
+Questa regola è analoga alla precedente, ma definisce come e quando un nodo deve inviare un messaggio dell'agente `B`.
+
+```mathematica
+Ruleset c : ind_t Do
+  Rule "InvioMessaggioDiRitorno"
+    cells_b_a[c] > 0 & c != NODO_ASSORBENTE & state_b = pending
+  ==>
+  Begin
+    ind := c;
+    InvioMessaggioDiRitorno(ind);
+    t := t + 1; -- aumento del tempo di simulazione
+    TickSynchronizationTime();
+  End;
+End;
+```
+
+#### StartSensing
+Questa regole definisce quando il nodo `B` initia la fase di sensing.
+
+```mathematica
+Rule "StartSensing"
+  cells_a_b[4] >= C & state_b = active
+==>
+Begin
+  state_b := pending;
+  t := t + 1;
+  TickSynchronizationTime();
+End;
+```
+
+Il nodo `B` inizia la fase di sensing solo se sono rispettate le seguenti condizioni:
+
+1. `B` ha ricevuto abbastanza concentrazione di messaggio da `A`. Ovvero `cells_a_b[4] >= C`.
+2. `B` è in stato `active`.
+
+Se le condizioni sono rispettate, allora:
+
+1. `B` passa in stato `pending`.
+2. il tempo di simulazione viene incrementato di 1.
+3. viene aggiornato il tempo di sincronizzazione.
+
+#### SensingAchieved
+DA FINIRE
+
+
+
 
 ### Possibili cammini di esecuzione

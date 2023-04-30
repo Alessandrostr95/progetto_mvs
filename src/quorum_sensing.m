@@ -4,13 +4,13 @@
 -- COSTANTI
 
 Const
-  E: 3;         -- Energia dei batteri
-  DT: 3;         -- intervallo di tempo nel quale i batteri inviano i messaggi
-  ST: 9;        -- Synchronization time
-  C: 500;       -- Concentrazione necessaria per l attivazione del batterio
-  T_MAX: 10;    -- Massimo tempo di simulazione
+  E: 3;                 -- Energia dei batteri
+  DT: 3;                -- intervallo di tempo nel quale i batteri inviano i messaggi
+  ST: 9;                -- Synchronization time
+  C: 500;               -- Concentrazione necessaria per l attivazione del batterio
+  T_MAX: 10;            -- Massimo tempo di simulazione
   NODO_ASSORBENTE: 3;   -- Il nodo 3 è un nodo assorbente
-  L: 5;         -- Tempo parametrizzato in cui A è disposto ad aspettare
+  L: 5;                 -- Tempo parametrizzato in cui A è disposto ad aspettare
 
 -- TIPI
 
