@@ -5,12 +5,12 @@
 
 Const
   E: 3;                 -- Energia dei batteri
-  DT: 3;                -- intervallo di tempo nel quale i batteri inviano i messaggi
+  DT: 2;                -- intervallo di tempo nel quale i batteri inviano i messaggi
   ST: 9;                -- Synchronization time
   C: 500;               -- Concentrazione necessaria per l attivazione del batterio
   T_MAX: 10;            -- Massimo tempo di simulazione
   NODO_ASSORBENTE: 3;   -- Il nodo 3 è un nodo assorbente
-  L: 5;                 -- Tempo parametrizzato in cui A è disposto ad aspettare
+  L: 10;                 -- Tempo parametrizzato in cui A è disposto ad aspettare
 
 -- TIPI
 
@@ -127,12 +127,21 @@ Ruleset c : ind_t Do
   End;
 End;
 
--- Entrambi sono riusciti a raggiungere il sensing
-Rule "SensingAchieved"
-  state_a = pending & state_b = pending & cells_b_a[1] >= C & cells_a_b[4] >= C
+-- A raggiunge il sensing
+Rule "SensingAchieved_A"
+  state_a = pending & cells_b_a[1] >= C
 ==>
 Begin
     state_a := sensing;
+    t := t + 1;
+    TickSynchronizationTime();
+End;
+
+-- B raggiunge il sensing
+Rule "SensingAchieved_B"
+  state_b = pending & synchronization_time_b = 0
+==>
+Begin
     state_b := sensing; 
     t := t + 1;
     TickSynchronizationTime();
@@ -171,7 +180,7 @@ Startstate  -- stato iniziale
 
 -- INVARIANTI 
 
-Invariant "All alive"  -- invariante: le vite dei batteri devono essere sempre maggiori di 0
+Invariant "all alive"  -- invariante: le vite dei batteri devono essere sempre maggiori di 0
 	state_a != dead & state_b != dead;
 
 Invariant "sensing achieved" -- il sensing non è stato raggiunto
@@ -180,5 +189,5 @@ Invariant "sensing achieved" -- il sensing non è stato raggiunto
 Invariant "time not expired" -- il tempo della simulazione è ≤ di T_MAX
   t <= T_MAX;
 
-Invariant "Nobody gone" -- Nessuno se n'è andato
+Invariant "nobody gone" -- Nessuno se n'è andato
   state_a != gone & state_b != gone;

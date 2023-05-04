@@ -400,3 +400,142 @@ Invariant "nobody gone"
 
 
 ## Simulazioni
+
+### Simulazione 1°
+Di seguito i parametri della simuazione
+
+**Variables** | **Values**
+---|---
+`E` | 3
+`DT` | 4
+`ST` | 9
+`C` | 500
+`T_MAX` | 10
+`NODO_ASSORBENTE` | 3
+`L` | 5
+
+Di seguito il risultato della simulazione con i dati parametri
+
+```
+Result:
+
+	Invariant "nobody gone" failed.
+
+State Space Explored:
+
+	30 states, 49 rules fired in 0.10s.
+```
+
+In questa simulazione non viene rispettata l'invariante `nobody gone`.
+Ciò è dovuto al fatto che il *leaving time* `L` dell'agante `A` è strettamente minore del countdown `ST`.
+
+Infatti, ciò avviente per i seguenti motivi:
+1. La concentrazione necessaria a `B` per inviare una risposta è `C` = 50\%.
+2. Per come è modellata la griglia, al nodo `B` arriva sempre il 25\% di concentrazione per ogni messaggio inviato da `A`. Perciò dobbiamo attendere l'invio di **almeno due** messaggi da parte di `A`.
+3. `A` invia i messaggi con cadenza `DT` = 4 clock, e quindi serviranno almeno 8 > `L` clock per l'invio dei due messaggi **necessari** (senza contante il tempo necessario per la trasmissione e la risposta).
+
+Secondo questi parametri esiste quindi almeno un *cammino di esecuzione* che porta ad una **configurazione di successo**.
+La configurazione è tale che `A` ha abbandonato (perché prudente) e `B` non ha iniziato il tentativo di sincronizzazione.
+Di seguito il primo stato che ha violato l'invariante.
+
+```
+Firing rule Gone
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:gone
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:0
+```
+
+### Simulazione 2°
+Di seguito i parametri della simuazione
+
+**Variables** | **Values**
+---|---
+`E` | 3
+`DT` | 4
+`ST` | 9
+`C` | 500
+`T_MAX` | 10
+`NODO_ASSORBENTE` | 3
+`L` | 10
+
+Di seguito il risultato della simulazione con i dati parametri
+
+```
+Result:
+
+	Invariant "sensing achieved" failed.
+
+State Space Explored:
+
+	196 states, 413 rules fired in 0.10s.
+```
+
+In questo caso, abbiamo un *leaving time* `L` sufficientemente grande da far sì che esista un cammino di esecuzione in cui `A` riesce a ricevere il messaggio di risposta di `B`, raggiungendo il *quorum*.
+
+Infatti l'invariante violata è `sensing achieved`, ovvero una *condizione di successo*.
+Di seguito il primo stato che ha violato l'invariante.
+
+```
+Firing rule SensingAchieved_A
+Obtained state:
+t:9
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:500
+cells_b_a[2]:0
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:sensing
+state_b:pending
+life_a:2
+life_b:2
+ind:2
+synchronization_time_a:8
+synchronization_time_b:7
+```
+
+Possiamo infatti notare che:
+1. entrambi gli agente hanno sufficiente *concentrazione* `C`.
+2. entrambi gli agente hanno sufficientemente energia (`life_a` > 0 e `life_b` > 0).
+3. i due countdown non sono ancora scaduti (i.e. `synchronization_time_a` < `ST` e `synchronization_time_b` < `ST`).
+
+### Simulazione 3°
+Di seguito i parametri della simuazione
+
+**Variables** | **Values**
+---|---
+`E` | 3
+`DT` | 2
+`ST` | 9
+`C` | 500
+`T_MAX` | 10
+`NODO_ASSORBENTE` | 3
+`L` | 10
+
+Di seguito il risultato della simulazione con i dati parametri
+
+```
+Result:
+
+	Invariant "all alive" failed.
+
+State Space Explored:
+
+	41 states, 59 rules fired in 0.10s.
+```
