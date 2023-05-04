@@ -27,7 +27,7 @@ Gli agenti possono scambiarsi dei messaggi, che vengono inviati in broadcast uni
 Perciò quando un agente invia un messaggio, la 
 **concentrazione** del messaggio verrà distribuita uniformemente su tutti i suoi archi incidenti.
 
-![](./img/img1.png)
+![](./img/img1.png){ width=50% }
 
 Nel contesto reale, inviare un messaggio richiede un certo impiego di energia da parte dei batteri.
 Essi infatti non possono inviare messaggi in maniera illimitata, ma devono in qualche "dosare" la quantità di messaggi inviati (per non rischiare di morire).
@@ -92,7 +92,7 @@ Infatti la concentrazione di messaggio che riceverà il nodo `B` sarà esattamen
 
 Consideriamo come esempio il seguente grafo:
 
-![](./img/img2.png)
+![](./img/img2.png){ width=50% }
 
 Supponiamo che `A` invii un solo messaggio.
 Siano gli eventi:
@@ -129,7 +129,7 @@ Le condizioni e assunzioni che abbiamo fatto per il modello sono le seguenti:
 - L'agente `A` è posto nel nodo in alto a sinistra, mentre `B` è posto nel nodo in basso a destra.
 - Esiste un solo *nodo assorbente*, posto in basso a sinistra.
 
-![Modello](./img/img4.png)
+![Modello](./img/img4.png){ width=50% }
 
 ### Criteri di successo/insuccesso
 La simulazione può terminare se almeno una delle seguenti condizioni si verifica:
@@ -217,7 +217,7 @@ Dopo aver definito i tipi, abbiamo definito le **variabili** che ci servono per 
 Abbiamo deciso di rappresentare la griglia con un array di concentrazione, dove nelle rispettive celle abbiamo la concentrazione di messaggio da `A` a `B`.
 Analogamente per il messaggio da `B` a `A`.
 
-![Array di concentrazione.](./img/img5.png)
+![Array di concentrazione.](./img/img5.png){ width=50% }
 
 Lo stato iniziale della simulazione è il seguente:
 
@@ -379,6 +379,7 @@ End;
 Il nostro modello rispetta **quattro invarianti**, ovvero tre regole che devono essere sempre rispettate durante tutta la simulazione.
 
 Le invarianti sono:
+
 1. `all alive`: che verifica che nessun agente è morto.
 2. `sensing achieved`: verifica che non si è ancora raggiunto il quorum.
 3. `time not expired`: verifica che il clock `t` non ha raggiunto il suo termine massimo `T_MAX`.
@@ -414,7 +415,7 @@ Di seguito i parametri della simuazione
 `NODO_ASSORBENTE` | 3
 `L` | 5
 
-Di seguito il risultato della simulazione con i dati parametri
+Di seguito il risultato della simulazione con i  parametri dati
 
 ```
 Result:
@@ -430,12 +431,14 @@ In questa simulazione non viene rispettata l'invariante `nobody gone`.
 Ciò è dovuto al fatto che il *leaving time* `L` dell'agante `A` è strettamente minore del countdown `ST`.
 
 Infatti, ciò avviente per i seguenti motivi:
+
 1. La concentrazione necessaria a `B` per inviare una risposta è `C` = 50\%.
 2. Per come è modellata la griglia, al nodo `B` arriva sempre il 25\% di concentrazione per ogni messaggio inviato da `A`. Perciò dobbiamo attendere l'invio di **almeno due** messaggi da parte di `A`.
 3. `A` invia i messaggi con cadenza `DT` = 4 clock, e quindi serviranno almeno 8 > `L` clock per l'invio dei due messaggi **necessari** (senza contante il tempo necessario per la trasmissione e la risposta).
 
 Secondo questi parametri esiste quindi almeno un *cammino di esecuzione* che porta ad una **configurazione di successo**.
 La configurazione è tale che `A` ha abbandonato (perché prudente) e `B` non ha iniziato il tentativo di sincronizzazione.
+
 Di seguito il primo stato che ha violato l'invariante.
 
 ```
@@ -472,7 +475,7 @@ Di seguito i parametri della simuazione
 `NODO_ASSORBENTE` | 3
 `L` | 10
 
-Di seguito il risultato della simulazione con i dati parametri
+Di seguito il risultato della simulazione con i  parametri dati
 
 ```
 Result:
@@ -486,7 +489,8 @@ State Space Explored:
 
 In questo caso, abbiamo un *leaving time* `L` sufficientemente grande da far sì che esista un cammino di esecuzione in cui `A` riesce a ricevere il messaggio di risposta di `B`, raggiungendo il *quorum*.
 
-Infatti l'invariante violata è `sensing achieved`, ovvero una *condizione di successo*.
+Infatti l'invariante violata è `sensing achieved`, ovvero una **condizione di successo**.
+
 Di seguito il primo stato che ha violato l'invariante.
 
 ```
@@ -511,8 +515,9 @@ synchronization_time_b:7
 ```
 
 Possiamo infatti notare che:
-1. entrambi gli agente hanno sufficiente *concentrazione* `C`.
-2. entrambi gli agente hanno sufficientemente energia (`life_a` > 0 e `life_b` > 0).
+
+1. entrambi gli agenti hanno sufficiente *concentrazione* `C`.
+2. entrambi gli agenti hanno sufficientemente energia (`life_a` > 0 e `life_b` > 0).
 3. i due countdown non sono ancora scaduti (i.e. `synchronization_time_a` < `ST` e `synchronization_time_b` < `ST`).
 
 ### Simulazione 3°
@@ -528,7 +533,7 @@ Di seguito i parametri della simuazione
 `NODO_ASSORBENTE` | 3
 `L` | 10
 
-Di seguito il risultato della simulazione con i dati parametri
+Di seguito il risultato della simulazione con i parametri dati
 
 ```
 Result:
@@ -543,7 +548,8 @@ State Space Explored:
 Esiste un cammino di esecuzione che porta ad uno stato fallimentare in cui l'agente `A` muore, esaurendo tutta la sua energia.
 Ciò accade perché abbassando troppo il parametro `DT` la risposta di `B` non fa in tempo a raggiungere l'agente `A`.
 
-Infatti l'invariante violata è `all alive`, ovvero una *condizione di fallimento*.
+Infatti l'invariante violata è `all alive`, ovvero una **condizione di fallimento**.
+
 Di seguito il primo stato che ha violato l'invariante.
 
 ```
@@ -582,7 +588,7 @@ Di seguito i parametri della simuazione
 `NODO_ASSORBENTE` | 3
 `L` | 10
 
-Di seguito il risultato della simulazione con i dati parametri
+Di seguito il risultato della simulazione con i parametri dati
 
 ```
 Result:
