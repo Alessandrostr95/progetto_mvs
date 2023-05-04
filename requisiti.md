@@ -4,24 +4,7 @@
 
 ![biofilm](img/2-biofilm.jpeg)
 
-Alcuni batteri possiedono sistemi di regolazione trascrizionale dipendenti dalla percezione della densità di cellule della stessa specie presenti nella popolazione.
-Questo tipo di controllo è stato definito **quorum sensing** (QS).
-Il QS fa parte dei sistemi di controllo globale: complessi sistemi di regolazione coinvolti nei meccanismi di patogenicità e virulenza che permettono a un organismo di rispondere efficientemente ai segnali dell'ambiente come quello rappresentato, nel caso specifico, dalla presenza di altri microrganismi della stessa specie.
-I batteri rilevano la presenza di altri batteri nel loro intorno tramite la ricezione di **messaggi** sottoforma di **molecole segnale**, conosciute anche come **autoinduttori**.
-
-La molecola segnale si diffonde all'esterno della cellula originaria, e può così entrare nel citoplasma di altre cellule adiacenti.
-Se la concentrazione di molecole segnale all'interno di cellule della popolazione batterica è alta (cioè, supera una certa soglia detta **quorum**), questa molecola si legherà all'attivatore trascrizionale, che a sua volta attiverà o reprimerà una serie di geni, determinando l'attivazione o lo spegnimento di vie metaboliche o processi cellulari specifici.
-
-<!-- Queste molecole si accumulano al di fuori delle cellule microbiche e, superata una certa soglia (detta quorum), possono innescare una serie di eventi che si succedono con effetto “a cascata”. -->
-
-Raggiunto il quorum, le molecole di **acil-omoserina-lattone (AHL)** accumulate penetrano all'interno della cellula batterica dove possono interagire con proteine citoplasmatiche capaci di legare il DNA, inducendo una variazione dell'espressione genica.
-
-![Figura 1 – Overview del funzionamento del quorum sensing batterico](img/1-quorum-sensing.jpeg)
-
-Si pensa che la conoscenza dei meccanismi del quorum sensing possa aiutare i microbiologi a migliorare l'azione degli antibiotici contro batteri patogeni e a ridurre l'insorgenza di mutazioni.
-
-## Introduzione 2
-Il quorum sensing è un processo di comunicazione tra batteri che si basa sulla produzione e la rilevazione di segnali molecolari chiamati autoinduttori. Questi segnali vengono prodotti dai batteri e diffondono nell'ambiente circostante. Quando la concentrazione di autoinduttori raggiunge una certa soglia, detta "**quorum**", i batteri sono in grado di rilevare la presenza degli altri membri della loro stessa specie e di coordinare il loro comportamento in modo da agire come una collettività.
+Il quorum sensing è un processo di comunicazione tra batteri che si basa sulla produzione e la rilevazione di segnali molecolari chiamati autoinduttori. Questi segnali vengono prodotti dai batteri e si diffondono nell'ambiente circostante. Quando la concentrazione di autoinduttori raggiunge una certa soglia, detta "**quorum**", i batteri sono in grado di rilevare la presenza degli altri membri della loro stessa specie e di coordinare il loro comportamento in modo da agire come una collettività.
 
 Il **quorum sensing** permette ai batteri di regolare l'espressione di specifici geni in risposta a segnali ambientali, come la densità della popolazione batterica o la presenza di nutrienti. Questo processo è stato osservato in molte specie batteriche e gioca un ruolo importante in diverse funzioni biologiche, come la formazione di biofilm, la virulenza e la produzione di composti metabolici.
 
@@ -29,8 +12,10 @@ Ad esempio, nel caso della formazione di biofilm, il quorum sensing permette ai 
 
 In sintesi, il **quorum sensing** è un importante processo di comunicazione tra batteri che permette loro di coordinare il loro comportamento in risposta alle condizioni ambientali, migliorando la loro capacità di adattamento e la loro sopravvivenza.
 
+![Figura 1 – Overview del funzionamento del quorum sensing batterico](img/1-quorum-sensing.jpeg)
+
 ## Definizione del modello
-Abbiamo modellizato il quorum sensing come un sistema **multiagente**, in cui ogni agente rappresenta un batterio e le interazioni tra gli agenti sono modellate come messaggi scambiati tra essi.
+Abbiamo modellizzato il quorum sensing come un sistema **multiagente**, in cui ogni agente rappresenta un batterio e le interazioni tra gli agenti sono modellate come **messaggi** scambiati tra essi.
 
 Nel nostro caso abbiamo considerato due agenti, `A` e `B`, che vogliono **sincronizzarsi**.
 Per sincronizzarsi, gli agenti devono prendere una decisione comune, che può essere presa in maniera sincrona o asincrona.
@@ -45,7 +30,7 @@ Perciò quando un agente invia un messaggio, la
 ![](./img/img1.png)
 
 Nel contesto reale, inviare un messaggio richiede un certo impiego di energia da parte dei batteri.
-Essi infatti non possono inviare messaggi in maniera illimitata, ma devono in qualche dosare la quantità di messaggi inviati (per non rischiare di morire).
+Essi infatti non possono inviare messaggi in maniera illimitata, ma devono in qualche "dosare" la quantità di messaggi inviati (per non rischiare di morire).
 Per questo motivo, abbiamo introdotto un parametro `E` (`Energy`) che rappresenta la quantità massima di messaggi che un agente può inviare.
 
 È ragionevole pensare che ogni agente non invii tutti i suoi messaggi ripetutamente, ma che invece **attenda** un certo tempo tra un messaggio e l'altro nel caso in cui non riceva risposta.
@@ -76,14 +61,14 @@ Anche `B` è soggetto a:
 - un *countdown*, parametrizzato da `ST`.
 - un tempo di attesa tra un messaggio e l'altro, parametrizzato da `DT`.
 - un numero massimo di messaggi inviabili, parametrizzato da `E`.
-- se `B` invia tutti i suoi messaggi prima della fine del *countdown*, allora `B` passa allo stato `dead`.
+    - se `B` invia tutti i suoi messaggi prima della fine del *countdown*, esaurisce quindi la sua energia, allora `B` passa allo stato `dead`.
 
 Alla fine del *countdown*, `B` passa dallo stato `pending` allo stato `sensing`.
 
 Il tempo viene scandito discretamente da un **clock** `t`.
 La simulazione ha un tempo massimo di esecuzione, parametrizzato da `T_MAX` (`Time Max`).
 Se alla fine della simulazione `A` e `B` si trovano entrambi nello stato `sensing`, allora la simulazione è considerata **terminata con successo**.
-Un'altra condizione di **successo** è quando `A` si trova nello stato `gone` e `B` si trova nello stato `active` (ovvero nessuno ha initato la sincronizzazione).
+Un'altra condizione di **successo** è quando `A` si trova nello stato `gone` e `B` si trova nello stato `active` (ovvero nessuno ha iniziato la produzione del biofilm).
 In tutti gli altri casi, la simulazione è considerata **fallita**.
 
 Ricapitolando, i parametri che modellano il sistema sono:
@@ -95,13 +80,13 @@ Ricapitolando, i parametri che modellano il sistema sono:
 - `C` (`Concentration`): concentrazione minima di messaggi da ricevere per iniziare la sincronizzazione.
 - `T_MAX` (`Time Max`): tempo massimo di esecuzione della simulazione.
 
-### Inoltrare messaggi
+### Inoltrare i messaggi
 La concentrazione dei messaggi in realtà modellizza la **probabilità** che un messaggio venga inviato.
 Si sta quindi modellizzando la probabilità come una **quantità fisica**.
 
-Quindi anziché eseguire una simulazione **stocastica**, in cui ogni volta che un agente invia un messaggio viene estratto il *destinatario* in maniera uniforme, distribuiamo porzioni messaggio in maniera uniforme tra i vicini del mittente.
+Anziché eseguire una simulazione **stocastica**, in cui ogni volta che un agente invia un messaggio viene estratto il *destinatario* in maniera uniforme, distribuiamo porzioni messaggio in maniera uniforme tra i vicini del mittente.
 
-Questo approccio ci permette di eseguire una simulazione in maniera deterministica **deterministica**.
+Questo approccio ci permette di eseguire una simulazione in maniera  **deterministica**.
 
 Infatti la concentrazione di messaggio che riceverà il nodo `B` sarà esattamente pari alla **probabilità** che `B` riceva un messaggio da `A` nel modello stocastico.
 
@@ -139,8 +124,8 @@ Un nodo assorbente è un nodo che non inoltra mai la concentrazione che riceve.
 Le condizioni e assunzioni che abbiamo fatto per il modello sono le seguenti:
 
 - Assumiamo che i messaggi non vengano rinviati sullo stesso arco da cui sono stati ricevuti.
-- Il grafo è una **grigli bidiensionale** 2x2.
-- Solo gli agenti `A` e `B` sono soggetti alle dinamiche descritte predentemente. Gli altri due nodi sono "*passivi*", si limitano a ricevere messaggi e a inviarli (eventualmente).
+- Il grafo è una **griglia bidimensionale** 2x2.
+- Solo gli agenti `A` e `B` sono soggetti alle dinamiche descritte predentemente. Gli altri due nodi sono "*passivi*", si limitano a ricevere messaggi e a inoltrarli (eventualmente).
 - L'agente `A` è posto nel nodo in alto a sinistra, mentre `B` è posto nel nodo in basso a destra.
 - Esiste un solo *nodo assorbente*, posto in basso a sinistra.
 
@@ -150,7 +135,7 @@ Le condizioni e assunzioni che abbiamo fatto per il modello sono le seguenti:
 La simulazione può terminare se almeno una delle seguenti condizioni si verifica:
 
 - almeno uno dei batteri esaurisce l'energia a disposizione, passando nello stato `dead`.
-- il clock `t` raggiunge un certo tempo massimo `T_MAX`-
+- il clock `t` raggiunge un certo tempo massimo `T_MAX`.
 - il batterio `A` lascia la simulazione, passando nello stato `gone`.
 - Il sensing viene iniziato da entrambi i batteri, passando nello stato `sensing`.
 
@@ -161,7 +146,7 @@ La simulazione termina con successo se:
 
 La simulazione termina con insuccesso se:
 
-- il batterio `A` si trova nello stato `gone` e il batterio `B` si trova nello stato `dead` al termine della simulazione.
+- il batterio `A` si trova nello stato `gone` e il batterio `B` si trova nello stato `pending` al termine della simulazione.
 - almeno uno dei batteri si trova nello stato `dead` al termine della simulazione.
 - un batterio si trova nello stato `sensing` e l'altro si trova in un qualsiasi altro stato al termine della simulazione.
 
@@ -170,13 +155,13 @@ Per prima cosa abbiamo definito i **parametri** della simulazione:
 
 ```mathematica
 Const
-  E: 3;     -- Energia dei batteri
-  DT: 3;    -- intervallo di tempo nel quale i batteri inviano i messaggi
-  ST: 9;    -- Synchronization time
-  C: 500;   -- Concentrazione necessaria per l attivazione del batterio
-  T_MAX: 10;    -- Massimo tempo di simulazione
-  NODO_ASSORBENTE: 3;   -- Il nodo 3 è un nodo assorbente
-  L: 5;     -- Tempo parametrizzato in cui A è disposto ad aspettare
+  E: 3;
+  DT: 3;
+  ST: 9;
+  C: 500;
+  T_MAX: 10;
+  NODO_ASSORBENTE: 3;
+  L: 5;
 ```
 
 La concentrazione necessaria `C` ha come valore 500 perché rappresentiamo la percentuale di concentrazione con un numero intero compreso tra 0 e 1000.
@@ -206,16 +191,16 @@ Type
 Dopo aver definito i tipi, abbiamo definito le **variabili** che ci servono per rappresentare lo stato dei nodi e dei messaggi:
 
 ```mathematica
-  t: time_t;    -- current simulation time
-  cells_a_b: cells_arr_t; -- Array di concentrazione nelle rispettive celle per il messaggio da A a B
-  cells_b_a: cells_arr_t; -- Array di concentrazione nelle rispettive celle per il messaggio da B a A
-  state_a: state_t;   -- Stato in cui si trova A
-  state_b: state_t;   -- Stato in cui si trova B
-  life_a: life_t;     -- Vita del batterio A
-  life_b: life_t;     -- Vita del batterio B
+  t: time_t;
+  cells_a_b: cells_arr_t;
+  cells_b_a: cells_arr_t;
+  state_a: state_t;
+  state_b: state_t;
+  life_a: life_t;
+  life_b: life_t;
   ind: ind_t;
-  synchronization_time_a: synchronization_time_t; -- Countdown per la sincronizzazione di A
-  synchronization_time_b: synchronization_time_t; -- Countdown per la sincronizzazione di B
+  synchronization_time_a: synchronization_time_t;
+  synchronization_time_b: synchronization_time_t;
 ```
 
 - `t`: è il clock della simulazione.
@@ -239,7 +224,7 @@ Lo stato iniziale della simulazione è il seguente:
 ```mathematica
 -- STATO INIZIALE
 
-Startstate  -- stato iniziale
+Startstate
   Begin
     t := 0;
     life_a := E;
@@ -268,7 +253,7 @@ Startstate  -- stato iniziale
 ### Regole
 Di seguito descritte le regole del modello.
 
-#### InviaMessaggio
+#### `InviaMessaggio`
 Questa regola definisce come e quando un nodo deve inviare un messaggio dell'agente `A`.
 
 ```mathematica
@@ -288,21 +273,21 @@ End;
 Il nodo indicizzato con `c` invia il messaggio solo se sono rispettate le seguenti condizioni:
 
 1. La concentrazione del messaggio è *non nulla* (maggiore di 0).
-2. L'indice del nodo corrente è diverso dall'indice del nodo assorbente. Esso non deve inviare messaggi.
+2. L'indice del nodo corrente è diverso dall'indice del nodo assorbente (esso non deve inviare messaggi).
 
 Se le condizioni sono rispettate, allora:
 
 1. il nodo invia il messaggio
 2. il tempo di simulazione viene incrementato di 1.
-3. viene aggiornato il tempo di sincronizzazione.
+3. viene aggiornato il countdown di `A`.
 
-> **IMPORTANTE!** In un modello ragionevole, ci si aspetta che il nodo `X` possa riceve ed inviare un messaggio in uno stesso istante.
+> **IMPORTANTE!** In un modello ragionevole, ci si aspetta che il nodo `X` (in alto a destra) possa ricevere ed inviare un messaggio in uno stesso istante.
 > Per come è stata definita la regola `InviaMessaggio`, questo non è possibile.
 > Infatti **solo un nodo** per clock può inviare un messaggio.
 > Per ovviare a questo problema (che avrebbe comportato notevoli complicazioni), abbiamo impostato il parametro `DT` (`Delta Time`) in maniera **sufficientemente grande**.
 > Infatti, se `DT` è sufficientemente grande, allora non può mai capitare che `X` riceva e invii un messaggio nello stesso istante.
 
-#### InviaMessaggioRitorno
+#### `InviaMessaggioRitorno`
 Questa regola è analoga alla precedente, ma definisce come e quando un nodo deve inviare un messaggio dell'agente `B`.
 
 ```mathematica
@@ -319,7 +304,7 @@ Ruleset c : ind_t Do
 End;
 ```
 
-#### StartSensing
+#### `StartSensing`
 Questa regole definisce quando il nodo `B` initia la fase di sensing.
 
 ```mathematica
@@ -342,12 +327,76 @@ Se le condizioni sono rispettate, allora:
 
 1. `B` passa in stato `pending`.
 2. il tempo di simulazione viene incrementato di 1.
-3. viene aggiornato il tempo di sincronizzazione.
+3. viene aggiornato il countdown di `B`.
 
-#### SensingAchieved
-DA FINIRE
+#### `SensingAchieved_A`
+Nel momento in cui `A` riceve abbastanza concentrazione del messaggio di `B` ed è nello stato `pending` (i.e. non è *morto* e non ha *abbandonato*), esso potrà iniziare la produzione di biofilm passando allo stato `sensing`.
+
+```mathematica
+-- A raggiunge il sensing
+Rule "SensingAchieved_A"
+  state_a = pending & cells_b_a[1] >= C
+==>
+Begin
+    state_a := sensing;
+    t := t + 1;
+    TickSynchronizationTime();
+End;
+```
+#### `SensingAchieved_B`
+Se il countdown di `B` scade e `B` si trova nello stato `pending` (i.e. non è morto ed ha ricevuto abbastanza concentrazione da `A`) allora passa allo stato `sensing` in cui inizia anch'esso la produzione di biofilm.
+
+> **N.B.** Ricordiamo che per come è stato modellizzato il sistema `B` non può abbandonare.
+
+```mathematica
+-- B raggiunge il sensing
+Rule "SensingAchieved_B"
+  state_b = pending & synchronization_time_b = 0
+==>
+Begin
+    state_b := sensing; 
+    t := t + 1;
+    TickSynchronizationTime();
+End;
+```
+
+#### `Gone`
+Ricordiamo che l'agente `A`, a un fissato istante di tempo `L` dopo l'inizio del suo countdown, decide spontaneamente di *abbandonare* la simulazione, passando allo stato `gone`.
+Questo comportamento è descritto dalla regola `Gone`.
+
+```mathematica
+Rule "Gone"
+  state_a = pending & synchronization_time_a = L
+==>
+  Begin
+    state_a := gone;
+    t := t + 1;
+    TickSynchronizationTime();
+End;
+```
+
+### Invarianti
+Il nostro modello rispetta **quattro invarianti**, ovvero tre regole che devono essere sempre rispettate durante tutta la simulazione.
+
+Le invarianti sono:
+1. `all alive`: che verifica che nessun agente è morto.
+2. `sensing achieved`: verifica che non si è ancora raggiunto il quorum.
+3. `time not expired`: verifica che il clock `t` non ha raggiunto il suo termine massimo `T_MAX`.
+4. `nobody gone`: assicura che nessun agente (nel nostro caso solamente `A`) abbia abbandonato.
+
+```mathematica
+Invariant "all alive"
+	state_a != dead & state_b != dead;
+
+Invariant "sensing achieved"
+  state_a != sensing & state_b != sensing;
+
+Invariant "time not expired"
+  t <= T_MAX;
+
+Invariant "nobody gone"
+  state_a != gone & state_b != gone;
+```
 
 
-
-
-### Possibili cammini di esecuzione
+## Simulazioni
