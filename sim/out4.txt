@@ -1,0 +1,7178 @@
+This program should be regarded as a DEBUGGING aid, not as a 
+certifier of correctness.
+Call with the -l flag or read the license file for terms
+and conditions of use.
+Run this program with "-h" for the list of options.
+
+Bugs, questions, and comments should be directed to
+"melatti@di.uniroma1.it".
+
+CMurphi compiler last modified date: Jan 11 2023
+Include files last modified date:    Jul 23 2021
+==========================================================================
+
+==========================================================================
+Caching Murphi Release 5.5.0
+Finite-state Concurrent System Verifier.
+
+Caching Murphi Release 5.5.0 is based on various versions of Murphi.
+Caching Murphi Release 5.5.0 :
+Copyright (C) 2009-2012 by Sapienza University of Rome.
+Murphi release 3.1 :
+Copyright (C) 1992 - 1999 by the Board of Trustees of
+Leland Stanford Junior University.
+
+==========================================================================
+
+Protocol: ./src/quorum_sensing
+
+Algorithm:
+	Verification by breadth first search.
+	with symmetry algorithm 3 -- Heuristic Small Memory Normalization
+	with permutation trial limit 10.
+
+Memory usage:
+
+	* The size of each state is 107 bits (rounded up to 16 bytes).
+	* The memory allocated for the hash table and state queue is
+	  8 Mbytes.
+	  With states hash-compressed to 40 bits, the maximum size of
+	  the state space is 1379321 states.
+	   * Use option "-k" or "-m" to increase this, if necessary.
+	* Capacity in queue for breadth-first search: 137932 states.
+	   * Change the constant gPercentActiveStates in mu_prolog.inc
+	     to increase this, if necessary.
+
+Warning: No trace will not be printed in the case of protocol errors!
+         Check the options if you want to have error traces.
+
+==========================================================================
+Verbose option selected.  The following is the detailed progress.
+
+Firing startstate Startstate 0
+Obtained state:
+t:0
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:0
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:3
+life_b:3
+ind:Undefined
+synchronization_time_a:0
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:0
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:0
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:3
+life_b:3
+ind:Undefined
+synchronization_time_a:0
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:1
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:1
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:1
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:1
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:2
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:2
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:2
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:2
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:2
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:2
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:3
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:3
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:2
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:2
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:3
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:3
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:3
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:3
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:4
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:3
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:4
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:3
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:3
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:3
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:3
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:5
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:4
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:5
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:4
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:4
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:4
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:4
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:5
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:5
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:5
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:5
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:6
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:6
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:6
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:3
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:4
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:4
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:2
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:3
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:3
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:0
+
+The following next states are obtained:
+
+Firing rule StartSensing
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:1
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:0
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:0
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:1
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:2
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:2
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:4
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:5
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:5
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:500
+cells_b_a[2]:0
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:2
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:2
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:500
+cells_b_a[2]:0
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:2
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:2
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:2
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:2
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:500
+cells_b_a[2]:0
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:2
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:500
+cells_b_a[3]:500
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:2
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:7
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:7
+synchronization_time_b:5
+
+The following next states are obtained:
+
+Firing rule InvioMessaggioDiRitorno, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:6
+
+Firing rule InviaMessaggio, c:4
+Obtained state:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:0
+cells_a_b[3]:500
+cells_a_b[4]:500
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:pending
+life_a:1
+life_b:3
+ind:4
+synchronization_time_a:8
+synchronization_time_b:6
+
+------------------------------
+Unpacking state from queue:
+t:8
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:pending
+state_b:active
+life_a:1
+life_b:3
+ind:1
+synchronization_time_a:8
+synchronization_time_b:0
+
+The following next states are obtained:
+
+
+==========================================================================
+
+Result:
+
+	9 not in range for synchronization_time_a.
+
+State Space Explored:
+
+	145 states, 276 rules fired in 0.10s.
+
+Analysis of State Space:
+
+	There are rules that are never fired.
+	If you are running with symmetry, this may be why.  Otherwise,
+	please run this program with "-pr" for the rules information.

@@ -539,3 +539,61 @@ State Space Explored:
 
 	41 states, 59 rules fired in 0.10s.
 ```
+
+Esiste un cammino di esecuzione che porta ad uno stato fallimentare in cui l'agente `A` muore, esaurendo tutta la sua energia.
+Ciò accade perché abbassando troppo il parametro `DT` la risposta di `B` non fa in tempo a raggiungere l'agente `A`.
+
+Infatti l'invariante violata è `all alive`, ovvero una *condizione di fallimento*.
+Di seguito il primo stato che ha violato l'invariante.
+
+```
+Firing rule InviaMessaggio, c:1
+Obtained state:
+t:6
+cells_a_b[1]:1000
+cells_a_b[2]:500
+cells_a_b[3]:500
+cells_a_b[4]:0
+cells_b_a[1]:0
+cells_b_a[2]:0
+cells_b_a[3]:0
+cells_b_a[4]:1000
+state_a:dead
+state_b:active
+life_a:0
+life_b:3
+ind:1
+synchronization_time_a:5
+synchronization_time_b:0
+```
+
+Possiamo infatti notare che, al clock `t` = 6 = `DT * E`, abbiamo che `life_a` = 0 e `state_a` = `dead`.
+
+### Simulazione 4°
+Di seguito i parametri della simuazione
+
+**Variables** | **Values**
+---|---
+`E` | 3
+`DT` | 4
+`ST` | 8
+`C` | 500
+`T_MAX` | 10
+`NODO_ASSORBENTE` | 3
+`L` | 10
+
+Di seguito il risultato della simulazione con i dati parametri
+
+```
+Result:
+
+	9 not in range for synchronization_time_a.
+
+State Space Explored:
+
+	145 states, 276 rules fired in 0.10s.
+```
+
+Con questa configurazione dei parametri, esiste un cammino di esecuzione in cui il countdown di `A` si esaurisce.
+In particolare, `synchronization_time_a` raggiunge il valore `9`, sforando il range del suo tipo `synchronization_time_t: 0..ST` e generando un'**eccezione**.
+Tale eccezione la consideriamo come la violazione di un'**invariante implicita**, che verifica che i countdown non si esauriscano.

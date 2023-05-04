@@ -5,7 +5,7 @@
 
 Const
   E: 3;                 -- Energia dei batteri
-  DT: 2;                -- intervallo di tempo nel quale i batteri inviano i messaggi
+  DT: 4;                -- intervallo di tempo nel quale i batteri inviano i messaggi
   ST: 9;                -- Synchronization time
   C: 500;               -- Concentrazione necessaria per l attivazione del batterio
   T_MAX: 10;            -- Massimo tempo di simulazione
