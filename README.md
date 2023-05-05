@@ -1,6 +1,7 @@
 ---
 title: "Quorum sensing - modellazione e implementazione in CMurphi"
 author: "Alessandro Straziota & Michele Cirillo"
+date: "a.a. 2022/2023"
 ---
 
 \newpage
