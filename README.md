@@ -12,7 +12,7 @@ Ad esempio, nel caso della formazione di biofilm, il quorum sensing permette ai 
 
 In sintesi, il **quorum sensing** è un importante processo di comunicazione tra batteri che permette loro di coordinare il loro comportamento in risposta alle condizioni ambientali, migliorando la loro capacità di adattamento e la loro sopravvivenza.
 
-![Figura 1 – Overview del funzionamento del quorum sensing batterico](img/1-quorum-sensing.jpeg)
+![Overview del funzionamento del quorum sensing batterico](img/1-quorum-sensing.jpeg)
 
 ## Definizione del modello
 Abbiamo modellizzato il quorum sensing come un sistema **multiagente**, in cui ogni agente rappresenta un batterio e le interazioni tra gli agenti sono modellate come **messaggi** scambiati tra essi.
@@ -27,7 +27,7 @@ Gli agenti possono scambiarsi dei messaggi, che vengono inviati in broadcast uni
 Perciò quando un agente invia un messaggio, la 
 **concentrazione** del messaggio verrà distribuita uniformemente su tutti i suoi archi incidenti.
 
-![](./img/img1.png){ width=50% }
+![Distribuzione del messaggio tra due archi incidenti](./img/img1.png){ width=50% }
 
 Nel contesto reale, inviare un messaggio richiede un certo impiego di energia da parte dei batteri.
 Essi infatti non possono inviare messaggi in maniera illimitata, ma devono in qualche "dosare" la quantità di messaggi inviati (per non rischiare di morire).
@@ -92,7 +92,7 @@ Infatti la concentrazione di messaggio che riceverà il nodo `B` sarà esattamen
 
 Consideriamo come esempio il seguente grafo:
 
-![](./img/img2.png){ width=50% }
+![Grafo d'esempio](./img/img2.png){ width=50% }
 
 Supponiamo che `A` invii un solo messaggio.
 Siano gli eventi:
@@ -110,7 +110,7 @@ Il nodo `A` inviera $1/2$ di concentrazione a `X` e $1/2$ di concentrazione a `Y
 Dopodiché, `X` invierà $(1/2) \cdot (1/2) = 1/4$ di concentrazione a `B` e $(1/2) \cdot (1/2) = 1/4$ di concentrazione a `W`.
 In totale `B` avrà ricevuto $1/4$ di concentrazione, ovvero proprio $P(\mathcal{E}_3)$.
 
-![](./img/img3.png)
+![Esempio di distribuzione della concentrazione di messaggio nel grafo d'esempio](./img/img3.png)
 
 
 ### Condizioni Avverse
