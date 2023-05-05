@@ -1,6 +1,10 @@
-# Progetto MVS Cirillo & Straziota
+---
+title: "Quorum sensing - modellazione e implementazione in CMurphi"
+author: "Alessandro Straziota & Michele Cirillo"
+---
 
-## Introduzione
+\newpage
+# Introduzione
 
 ![biofilm](img/2-biofilm.jpeg)
 
@@ -14,7 +18,7 @@ In sintesi, il **quorum sensing** è un importante processo di comunicazione tra
 
 ![Overview del funzionamento del quorum sensing batterico](img/1-quorum-sensing.jpeg)
 
-## Definizione del modello
+# Definizione del modello
 Abbiamo modellizzato il quorum sensing come un sistema **multiagente**, in cui ogni agente rappresenta un batterio e le interazioni tra gli agenti sono modellate come **messaggi** scambiati tra essi.
 
 Nel nostro caso abbiamo considerato due agenti, `A` e `B`, che vogliono **sincronizzarsi**.
@@ -80,7 +84,7 @@ Ricapitolando, i parametri che modellano il sistema sono:
 - `C` (`Concentration`): concentrazione minima di messaggi da ricevere per iniziare la sincronizzazione.
 - `T_MAX` (`Time Max`): tempo massimo di esecuzione della simulazione.
 
-### Inoltrare i messaggi
+## Inoltrare i messaggi
 La concentrazione dei messaggi in realtà modellizza la **probabilità** che un messaggio venga inviato.
 Si sta quindi modellizzando la probabilità come una **quantità fisica**.
 
@@ -113,14 +117,14 @@ In totale `B` avrà ricevuto $1/4$ di concentrazione, ovvero proprio $P(\mathcal
 ![Esempio di distribuzione della concentrazione di messaggio nel grafo d'esempio](./img/img3.png)
 
 
-### Condizioni Avverse
+## Condizioni Avverse
 In un contesto reale, potrebbe capitare che un messaggio venga perso durante la trasmissione oppure che semplicemente non venga inoltrato.
 
 Per modellizzare questo comportamento, abbiamo introdotto la possibilità di definire dei **nodi avversi** o **nodi assrbenti**.
 
 Un nodo assorbente è un nodo che non inoltra mai la concentrazione che riceve.
 
-### Dettagli modello
+## Dettagli modello
 Le condizioni e assunzioni che abbiamo fatto per il modello sono le seguenti:
 
 - Assumiamo che i messaggi non vengano rinviati sullo stesso arco da cui sono stati ricevuti.
@@ -131,7 +135,7 @@ Le condizioni e assunzioni che abbiamo fatto per il modello sono le seguenti:
 
 ![Modello](./img/img4.png){ width=50% }
 
-### Criteri di successo/insuccesso
+## Criteri di successo/insuccesso
 La simulazione può terminare se almeno una delle seguenti condizioni si verifica:
 
 - almeno uno dei batteri esaurisce l'energia a disposizione, passando nello stato `dead`.
@@ -150,7 +154,7 @@ La simulazione termina con insuccesso se:
 - almeno uno dei batteri si trova nello stato `dead` al termine della simulazione.
 - un batterio si trova nello stato `sensing` e l'altro si trova in un qualsiasi altro stato al termine della simulazione.
 
-## Implementazione
+# Implementazione
 Per prima cosa abbiamo definito i **parametri** della simulazione:
 
 ```mathematica
@@ -250,10 +254,10 @@ Startstate
 - `cells_b_a` = [0\%, 0\%, 0\%, 100\%] (*messaggio da `B` a `A`*).
 - `synchronization_time_a` e `synchronization_time_b` sono inizializzati a 0 (*tempo di sincronizzazione iniziale*).
 
-### Regole
+## Regole
 Di seguito descritte le regole del modello.
 
-#### `InviaMessaggio`
+### `InviaMessaggio`
 Questa regola definisce come e quando un nodo deve inviare un messaggio dell'agente `A`.
 
 ```mathematica
@@ -287,7 +291,7 @@ Se le condizioni sono rispettate, allora:
 > Per ovviare a questo problema (che avrebbe comportato notevoli complicazioni), abbiamo impostato il parametro `DT` (`Delta Time`) in maniera **sufficientemente grande**.
 > Infatti, se `DT` è sufficientemente grande, allora non può mai capitare che `X` riceva e invii un messaggio nello stesso istante.
 
-#### `InviaMessaggioRitorno`
+### `InviaMessaggioRitorno`
 Questa regola è analoga alla precedente, ma definisce come e quando un nodo deve inviare un messaggio dell'agente `B`.
 
 ```mathematica
@@ -304,7 +308,7 @@ Ruleset c : ind_t Do
 End;
 ```
 
-#### `StartSensing`
+### `StartSensing`
 Questa regole definisce quando il nodo `B` initia la fase di sensing.
 
 ```mathematica
@@ -329,7 +333,7 @@ Se le condizioni sono rispettate, allora:
 2. il tempo di simulazione viene incrementato di 1.
 3. viene aggiornato il countdown di `B`.
 
-#### `SensingAchieved_A`
+### `SensingAchieved_A`
 Nel momento in cui `A` riceve abbastanza concentrazione del messaggio di `B` ed è nello stato `pending` (i.e. non è *morto* e non ha *abbandonato*), esso potrà iniziare la produzione di biofilm passando allo stato `sensing`.
 
 ```mathematica
@@ -343,7 +347,7 @@ Begin
     TickSynchronizationTime();
 End;
 ```
-#### `SensingAchieved_B`
+### `SensingAchieved_B`
 Se il countdown di `B` scade e `B` si trova nello stato `pending` (i.e. non è morto ed ha ricevuto abbastanza concentrazione da `A`) allora passa allo stato `sensing` in cui inizia anch'esso la produzione di biofilm.
 
 > **N.B.** Ricordiamo che per come è stato modellizzato il sistema `B` non può abbandonare.
@@ -360,7 +364,7 @@ Begin
 End;
 ```
 
-#### `Gone`
+### `Gone`
 Ricordiamo che l'agente `A`, a un fissato istante di tempo `L` dopo l'inizio del suo countdown, decide spontaneamente di *abbandonare* la simulazione, passando allo stato `gone`.
 Questo comportamento è descritto dalla regola `Gone`.
 
@@ -375,7 +379,7 @@ Rule "Gone"
 End;
 ```
 
-### Invarianti
+## Invarianti
 Il nostro modello rispetta **quattro invarianti**, ovvero tre regole che devono essere sempre rispettate durante tutta la simulazione.
 
 Le invarianti sono:
@@ -400,9 +404,9 @@ Invariant "nobody gone"
 ```
 
 
-## Simulazioni
+# Simulazioni
 
-### Simulazione 1°
+## Simulazione 1°
 Di seguito i parametri della simuazione
 
 **Variables** | **Values**
@@ -462,7 +466,7 @@ synchronization_time_a:5
 synchronization_time_b:0
 ```
 
-### Simulazione 2°
+## Simulazione 2°
 Di seguito i parametri della simuazione
 
 **Variables** | **Values**
@@ -520,7 +524,7 @@ Possiamo infatti notare che:
 2. entrambi gli agenti hanno sufficientemente energia (`life_a` > 0 e `life_b` > 0).
 3. i due countdown non sono ancora scaduti (i.e. `synchronization_time_a` < `ST` e `synchronization_time_b` < `ST`).
 
-### Simulazione 3°
+## Simulazione 3°
 Di seguito i parametri della simuazione
 
 **Variables** | **Values**
@@ -575,7 +579,7 @@ synchronization_time_b:0
 
 Possiamo infatti notare che, al clock `t` = 6 = `DT * E`, abbiamo che `life_a` = 0 e `state_a` = `dead`.
 
-### Simulazione 4°
+## Simulazione 4°
 Di seguito i parametri della simuazione
 
 **Variables** | **Values**
